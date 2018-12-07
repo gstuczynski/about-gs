@@ -1,6 +1,27 @@
 import React from 'react';
-import config from '../../config';
 import axios from 'axios';
+import Particles from 'react-particles-js';
+import config from '../../config';
+import style from '../../styles/about.page.module.styl';
+
+const particlesParams = {
+  particles: {
+    number: {
+      value: 50,
+    },
+    size: {
+      value: 3,
+    },
+  },
+  interactivity: {
+    events: {
+      onhover: {
+        enable: true,
+        mode: 'repulse',
+      },
+    },
+  },
+};
 
 class AboutPage extends React.Component {
   constructor() {
@@ -21,7 +42,12 @@ class AboutPage extends React.Component {
   }
 
   render() {
-    return <div>{this.state.aboutGsText}</div>;
+    return (
+      <div className={style.aboutPage}>
+        <div className={style.aboutText}>{this.state.aboutGsText}</div>
+        <Particles params={particlesParams} />
+      </div>
+    );
   }
 }
 

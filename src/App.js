@@ -9,11 +9,10 @@ import style from './styles/app.module.styl';
 class App extends Component {
   render() {
     return (
-      <div style={{ height: 2000 }}>
+      <div>
         <Router>
           <>
             <Header />
-
             <div className={style.contentWrapper}>
               <Route path="/about-me" component={AboutPage} />
               <Route path="/portfolio" component={PortfolioPage} />
