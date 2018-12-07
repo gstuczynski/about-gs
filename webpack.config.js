@@ -1,10 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
 
 const PROD = process.env.NODE_ENV === 'production';
 
-const pathsToClean = ['dist'];
+const pathsToClean = ['docs'];
 
 const cssLoader = (modulesEnabled = true) => ({
   loader: 'css-loader',
@@ -20,6 +21,7 @@ module.exports = {
   mode: PROD ? 'production' : 'development',
   output: {
     publicPath: '/',
+    path: path.resolve(__dirname, 'docs'),
     filename: PROD ? '[name].[chunkhash].js' : '[name].js',
   },
   module: {
