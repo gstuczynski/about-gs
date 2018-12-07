@@ -1,7 +1,7 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
 import cn from 'classnames';
-import { Link as RRNavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import style from '../styles/header.module.styl';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -72,12 +72,10 @@ export default class Header extends React.Component {
           exit={false}>
           <Nav className={style.navigation} navbar>
             <NavItem>
-              <NavLink href="/licences/">licences</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/about" activeClassName="active" tag={RRNavLink}>
-                About
-              </NavLink>
+              <Link to="/about-me">About</Link>
+              <NavItem>
+                <Link to="/portfolio">portfolio</Link>
+              </NavItem>
             </NavItem>
           </Nav>
         </Collapse>

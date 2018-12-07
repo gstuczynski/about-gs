@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
+import PortfolioPage from './components/portfolio/PortfolioPage';
+import AboutPage from './components/about/AboutPage';
+
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-const Home = () => (
-  <div>
-    <h2> Home </h2>
-  </div>
-);
-
-const City = () => (
-  <div>
-    <ul>
-      <li>San Francisco</li>
-      <li>Istanbul</li>
-      <li>Tokyo</li>
-    </ul>
-  </div>
-);
+import style from './styles/app.module.styl';
 
 class App extends Component {
   render() {
@@ -25,7 +13,11 @@ class App extends Component {
         <Router>
           <>
             <Header />
-            <Route path="/about" component={() => <div>dupa</div>} />
+
+            <div className={style.contentWrapper}>
+              <Route path="/about-me" component={AboutPage} />
+              <Route path="/portfolio" component={PortfolioPage} />
+            </div>
           </>
         </Router>
       </div>
