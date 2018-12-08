@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
-import HomePage from './components/home/HomePage'
+import HomePage from './components/home/HomePage';
 import PortfolioPage from './components/portfolio/PortfolioPage';
 import AboutPage from './components/about/AboutPage';
 import style from './styles/app.module.styl';
@@ -12,7 +12,6 @@ import 'typeface-gamja-flower';
 import 'typeface-raleway';
 
 export const ThemeContext = React.createContext();
-
 
 class App extends Component {
   constructor() {
@@ -45,10 +44,7 @@ class App extends Component {
             <div className={style.contentWrapper}>
               <ThemeContext.Provider value={this.state.theme}>
                 <Route path="/about-me" component={AboutPage} />
-                <Route
-                  path="/portfolio"
-                  component={PortfolioPage}
-                />
+                <Route path="/portfolio" component={PortfolioPage} />
                 <Route path="/" exact component={HomePage} />
               </ThemeContext.Provider>
             </div>
