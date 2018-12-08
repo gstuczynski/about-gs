@@ -44,7 +44,26 @@
   background: #f00;
 }
 
-.src-styles-app-module__contentWrapper--38ixR {
-  margin-top: 200px;
+.src-styles-about-page-module__aboutPage--2W3Qu {
+  background: #00f;
+  height: 100%;
+}
+.src-styles-about-page-module__aboutPage--2W3Qu .src-styles-about-page-module__aboutText--3xU9G {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  border: solid;
+  background: #f00;
+  opacity: 0.8;
+}
+
+.src-styles-app-module__app--1Hqow {
+  height: 100vh;
+  background: #f00;
+}
+.src-styles-app-module__app--1Hqow .src-styles-app-module__contentWrapper--38ixR {
+  padding-top: 60px;
+  height: 100%;
 }
 
