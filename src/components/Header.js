@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
@@ -72,13 +72,17 @@ export default class Header extends React.Component {
           exit={false}>
           <Nav className={style.navigation} navbar>
             <NavItem>
-              <Link to="/about-me">About</Link>
-              <NavItem>
-                <Link to="/portfolio">portfolio</Link>
-              </NavItem>
+              <Link to="/">Home</Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/about-me">Bio</Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/portfolio">Portfolio</Link>
             </NavItem>
           </Nav>
         </Collapse>
+        {this.props.children}
       </Navbar>
     );
   }

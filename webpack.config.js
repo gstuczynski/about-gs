@@ -5,7 +5,7 @@ const path = require('path');
 
 const PROD = process.env.NODE_ENV === 'production';
 
-const pathsToClean = ['docs'];
+const pathsToClean = ['dist'];
 
 const cssLoader = (modulesEnabled = true) => ({
   loader: 'css-loader',
@@ -21,7 +21,6 @@ module.exports = {
   mode: PROD ? 'production' : 'development',
   output: {
     publicPath: '/',
-    path: path.resolve(__dirname, 'docs'),
     filename: PROD ? '[name].[chunkhash].js' : '[name].js',
   },
   module: {
@@ -33,8 +32,7 @@ module.exports = {
       },
       {
         test: /\.(png|gif|jpg|svg|woff|woff2)$/,
-        exclude: /src\/assets\/icons/,
-        use: 'file-loader?name=images/[name].[ext]',
+        use: 'file-loader?name=images/[name].[ext]'
       },
       {
         test: /\.css$/,

@@ -1,6 +1,29 @@
 import React from 'react';
-import config from '../../config';
+import Particles from 'react-particles-js';
 import axios from 'axios';
+import cn from 'classnames';
+import config from '../../config';
+import style from '../../styles/about.page.module.styl';
+import { ThemeContext } from '../../App';
+
+const particlesParams = {
+  particles: {
+    number: {
+      value: 100,
+    },
+    size: {
+      value: 5,
+    },
+  },
+  interactivity: {
+    events: {
+      onhover: {
+        enable: true,
+        mode: 'repulse',
+      },
+    },
+  },
+};
 
 class AboutPage extends React.Component {
   constructor() {
@@ -11,7 +34,11 @@ class AboutPage extends React.Component {
   }
   componentDidMount() {
     return axios
-      .get(`${config.backendAddress}/about-gs`)
+      .get(`${config.backendAddress}/about-gs`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      })
       .then(response => {
         this.setState({ aboutGsText: response.data });
       })
@@ -21,7 +48,19 @@ class AboutPage extends React.Component {
   }
 
   render() {
-    return <div>{this.state.aboutGsText}</div>;
+    return (
+      <ThemeContext.Consumer>
+        {value => (
+          <div className={cn(style.aboutPage, value)}>
+            <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
+            <div
+              className={cn(style.aboutText, value)}
+              dangerouslySetInnerHTML={{ __html: this.state.aboutGsText }}
+            />
+          </div>
+        )}
+      </ThemeContext.Consumer>
+    );
   }
 }
 
