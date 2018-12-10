@@ -39,7 +39,7 @@
   "scripts": {
     "start": "webpack-dev-server --watch --progress --colors",
     "build": "NODE_ENV=production webpack -p",
-    "deploy": "gh-pages -d dist"
+    "deploy": "yarn build && gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": "react-app"

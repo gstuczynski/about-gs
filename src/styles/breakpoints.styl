@@ -1,0 +1,13 @@
+media_queries = {
+  small: "all and (max-width: 650px)",
+  medium: "all and (min-width: 650px) and (max-width: 1180px)",
+  large: "all and (min-width: 1180px)"
+}
+
+for_breakpoint(breakpoints)
+  conditions = ()
+  for breakpoint in breakpoints
+    push(conditions, media_queries[breakpoint])
+  conditions = join(", ", conditions)
+  @media conditions
+    {block}

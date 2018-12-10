@@ -8,6 +8,7 @@ import AboutPage from './components/about/AboutPage';
 import style from './styles/app.module.styl';
 import img from './assets/small-deer.svg';
 import './styles/global.styl';
+import './styles/breakpoints.styl';
 import 'typeface-gamja-flower';
 import 'typeface-raleway';
 

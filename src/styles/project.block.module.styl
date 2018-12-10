@@ -1,3 +1,5 @@
+@import "./breakpoints.styl"
+
 .projectBlock
   margin: 20px auto
   display: flex
@@ -10,10 +12,19 @@
   font-family: Gamja Flower
   font-size: 22px
   position: relative
+  +for_breakpoint(small)
+    color: red
+    flex-flow: column
+
   
   img
     max-width: 200px
     max-height: 200px
+    +for_breakpoint(small)
+      max-width: 80%
+      max-height: initial
+      align-self: center
+      margin-bottom: 20px
 
   .modal
     position: relative

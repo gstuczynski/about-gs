@@ -1,4 +1,5 @@
 @import "./global.styl"
+@import "./breakpoints.styl"
 
 .app
   min-height: 100vh
@@ -11,3 +12,7 @@
     height: 40px
     font-family: "Permanent Marker"
     font-size: 12px
+    +for_breakpoint(small)
+      position: absolute
+      right: 20px
+      top: 10px

@@ -62,7 +62,7 @@ export default class Header extends React.Component {
     };
     return (
       <Navbar light expand="md" className={style.header} style={headerStyle}>
-        <NavbarToggler onClick={this.toggleNav} />
+        <NavbarToggler onClick={this.toggleNav} className={style.toggler} />
         <Collapse
           isOpen={this.state.isNavOpen}
           className={style.collapse}

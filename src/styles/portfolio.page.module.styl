@@ -1,17 +1,21 @@
+@import "./breakpoints.styl"
+
 .portfolioPage
-  //background-image: linear-gradient(to bottom right, #03359b, black);
   position: absolute
   width: 100%
+  +for_breakpoint(small)
+    padding: 10px
 
   :nth-child(odd)
-    img
-      order: 1
-      padding-left: 20px
-    div
-      margin-right: 40px
+    +for_breakpoint(large)
+      img
+        order: 1
+        padding-left: 20px
+      div
+        margin-right: 40px
 
-  :nth-child(even)
-    img
-      padding-right: 20px
-    div
-      margin-left: 40px
+      :nth-child(even)
+        img
+          padding-right: 20px
+        div
+          margin-left: 40px

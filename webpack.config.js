@@ -20,7 +20,7 @@ const cssLoader = (modulesEnabled = true) => ({
 module.exports = {
   mode: PROD ? 'production' : 'development',
   output: {
-    publicPath: '/',
+    publicPath: PROD ? '' : '/',
     filename: PROD ? '[name].[chunkhash].js' : '[name].js',
   },
   module: {
@@ -55,9 +55,7 @@ module.exports = {
       {
         test: /\.styl$/,
         exclude: [/node_modules/, /\.module\.styl/],
-        use: PROD
-          ? [MiniCssExtractPlugin.loader, cssLoader(), 'stylus-loader']
-          : ['style-loader', cssLoader(false), 'stylus-loader'],
+        use: ['style-loader', cssLoader(false), 'stylus-loader'],
       },
       {
         test: /\.svg$/,
@@ -79,6 +77,7 @@ module.exports = {
 
   devServer: {
     historyApiFallback: true,
+    host: '0.0.0.0',
   },
   plugins: [
     new CleanWebpackPlugin(PROD ? pathsToClean : []),
