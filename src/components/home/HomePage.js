@@ -5,69 +5,7 @@ import axios from 'axios';
 import config from '../../config';
 import style from '../../styles/home.page.module.styl';
 import { ThemeContext } from '../../App';
-import '../../assets/dupa.svg';
-
-const particlesParams = {
-  fps_limit: 10,
-  particles: {
-    number: {
-      value: 100,
-      density: {
-        enable: true,
-      },
-    },
-    line_linked: {
-      enable: true,
-      distance: 30,
-      opacity: 0.4,
-    },
-    move: {
-      speed: 0.5,
-    },
-    opacity: {
-      anim: {
-        enable: true,
-        opacity_min: 1,
-        speed: 5,
-        sync: false,
-      },
-      value: 0.4,
-    },
-  },
-  polygon: {
-    enable: true,
-    scale: 0.5,
-    type: 'inline',
-    move: {
-      radius: 10,
-    },
-    url: 'images/dupa.svg',
-    inline: {
-      arrangement: 'equidistant',
-    },
-    draw: {
-      enable: true,
-      stroke: {
-        color: 'rgba(255, 255, 255, .2)',
-      },
-    },
-  },
-  retina_detect: true,
-  interactivity: {
-    events: {
-      onhover: {
-        enable: true,
-        mode: 'bubble',
-      },
-    },
-    modes: {
-      bubble: {
-        size: 20,
-        distance: 20,
-      },
-    },
-  },
-};
+import particlesParams from '../../assets/particlesConfigs/linkedBalls.json';
 
 class HomePage extends React.Component {
   constructor() {
@@ -90,7 +28,7 @@ class HomePage extends React.Component {
       .then(response => {
         this.setState({
           welcomeText: response.data.welcomeText,
-          feedbackText: response.data.feedbackText,
+          feedbackText: response.data.homeFeedbackText,
         });
       })
       .catch(() => {
@@ -124,25 +62,25 @@ class HomePage extends React.Component {
       <ThemeContext.Consumer>
         {value => (
           <div className={cn(style.homePage, value)}>
-            <Particles
-              params={particlesParams}
-              style={{ height: '100vh', width: '100vw', top: '0' }}
-            />
-            <div
-              className={cn(style.welcomeText, value)}
-              dangerouslySetInnerHTML={{ __html: this.state.welcomeText }}
-            />
-            <div className={cn(style.feedback, value)}>
-              <div dangerouslySetInnerHTML={{ __html: this.state.welcomeText }} />
-              <form onSubmit={this.handleFeedbackSubmit}>
-                {this.state.feedbackWasSent && infoAfterSentFeedback}
-                <input
-                  type="text"
-                  value={this.state.feedbackFormInput}
-                  onChange={this.handleFeedbackChange}
-                />
-                <input type="submit" value="Submit" />
-              </form>
+            <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
+
+            <div className={style.homeContent}>
+              <div
+                className={cn(style.welcomeText, value)}
+                dangerouslySetInnerHTML={{ __html: this.state.welcomeText }}
+              />
+              <div className={cn(style.feedback, value)}>
+                <div dangerouslySetInnerHTML={{ __html: this.state.feedbackText }} />
+                <form onSubmit={this.handleFeedbackSubmit}>
+                  {this.state.feedbackWasSent && infoAfterSentFeedback}
+                  <input
+                    type="text"
+                    value={this.state.feedbackFormInput}
+                    onChange={this.handleFeedbackChange}
+                  />
+                  <input type="submit" value="Submit" />
+                </form>
+              </div>
             </div>
           </div>
         )}

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './components/home/HomePage';
 import PortfolioPage from './components/portfolio/PortfolioPage';
 import AboutPage from './components/about/AboutPage';
+import AdminPage from './components/admin/AdminPage';
 import style from './styles/app.module.styl';
-import img from './assets/small-deer.svg';
 import './styles/global.styl';
 import './styles/breakpoints.styl';
 import 'typeface-gamja-flower';
@@ -47,6 +47,7 @@ class App extends Component {
                 <Route path="/about-me" component={AboutPage} />
                 <Route path="/portfolio" component={PortfolioPage} />
                 <Route path="/" exact component={HomePage} />
+                <Route path="/admin" component={AdminPage} />
               </ThemeContext.Provider>
             </div>
           </>

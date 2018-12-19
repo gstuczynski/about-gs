@@ -5,25 +5,7 @@ import cn from 'classnames';
 import config from '../../config';
 import style from '../../styles/about.page.module.styl';
 import { ThemeContext } from '../../App';
-
-const particlesParams = {
-  particles: {
-    number: {
-      value: 100,
-    },
-    size: {
-      value: 5,
-    },
-  },
-  interactivity: {
-    events: {
-      onhover: {
-        enable: true,
-        mode: 'repulse',
-      },
-    },
-  },
-};
+import particlesParams from '../../assets/particlesConfigs/circles.json';
 
 class AboutPage extends React.Component {
   constructor() {
