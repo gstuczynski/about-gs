@@ -1,6 +1,0 @@
-<testsuites name="jest tests" tests="1" failures="0" time="1.54">
-  <testsuite name="Header component" errors="0" failures="0" skipped="0" timestamp="2018-12-19T12:09:11" time="1.063" tests="1">
-    <testcase classname="Header component should correctly render Header component" name="Header component should correctly render Header component" time="0.009">
-    </testcase>
-  </testsuite>
-</testsuites>
