@@ -16,13 +16,13 @@ class AboutPage extends React.Component {
   }
   componentDidMount() {
     return axios
-      .get(`${config.backendAddress}/about-gs`, {
+      .get(`${config.backendAddress}/info/about-gs`, {
         headers: {
           'Access-Control-Allow-Origin': '*',
         },
       })
       .then(response => {
-        this.setState({ aboutGsText: response.data });
+        this.setState({ aboutGsText: response.data[0].text });
       })
       .catch(() => {
         this.setState({ isError: true });

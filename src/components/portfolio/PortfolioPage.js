@@ -29,7 +29,7 @@ class PortfolioPage extends React.Component {
 
   componentDidMount() {
     return axios
-      .get(`${config.backendAddress}/about-projects`)
+      .get(`${config.backendAddress}/info/projects`)
       .then(response => {
         this.setState({ projectList: response.data });
       })
