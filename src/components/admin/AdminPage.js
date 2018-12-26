@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import LoginForm from './LoginForm';
 import ProjectsEditor from './ProjectsEditor';
-import AboutTextEditor from './AboutTextEditor';
+import TextEditor from './TextEditor';
 import style from '../../styles/admin.module.styl';
 import config from '../../config';
 
@@ -66,7 +66,9 @@ export default class AdminPage extends Component {
         <LoginForm onLogin={this.onLogin} onLogout={this.onLogout} />
         {this.state.isAuth && (
           <div>
-            <ProjectsEditor /> <AboutTextEditor />
+            <ProjectsEditor />
+            <TextEditor getEndpoint={'about-gs'} updateEndpoint={'aboutgs-update'} />
+            <TextEditor getEndpoint={'home-content'} updateEndpoint={'home-content-update'} />
           </div>
         )}
       </div>

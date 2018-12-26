@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { string } from 'prop-types';
 import config from '../../config';
 
-export default class AboutTextEditor extends Component {
-  constructor() {
-    super();
+export default class TextEditor extends Component {
+  static propTypes = {
+    getEndpoint: string.isRequired,
+    updateEndpoint: string.isRequired,
+  };
+
+  constructor(props) {
+    super(props);
     this.state = {
       text: '',
     };
@@ -12,7 +18,7 @@ export default class AboutTextEditor extends Component {
 
   componentDidMount() {
     axios
-      .get(`${config.backendAddress}/info/about-gs`)
+      .get(`${config.backendAddress}/info/${this.props.getEndpoint}`)
       .then(response => {
         this.setState({ text: response.data[0].text });
       })
@@ -24,7 +30,7 @@ export default class AboutTextEditor extends Component {
   onSubmit = () => {
     const token = localStorage.getItem('token');
     return axios
-      .post(`${config.backendAddress}/info/aboutgs-update`, this.state, {
+      .post(`${config.backendAddress}/info/${this.props.updateEndpoint}`, this.state, {
         headers: { authorization: token },
       })
       .then(response => {

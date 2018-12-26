@@ -20,15 +20,15 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     return axios
-      .get(`${config.backendAddress}/home`, {
+      .get(`${config.backendAddress}/info/home-content`, {
         headers: {
           'Access-Control-Allow-Origin': '*',
         },
       })
       .then(response => {
         this.setState({
-          welcomeText: response.data.welcomeText,
-          feedbackText: response.data.homeFeedbackText,
+          welcomeText: response.data[0].text,
+          feedbackText: response.data[0].homeFeedbackText,
         });
       })
       .catch(() => {
