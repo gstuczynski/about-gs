@@ -1,3 +1,5 @@
+@import "./breakpoints.styl"
+
 .homePage
   min-height: 100vh
   width: 100%
@@ -7,7 +9,11 @@
       max-width: 1000px
       margin: 10% auto 0 auto
       position: relative
+      +for_breakpoint(small)
+        margin-top: 150px
 
+    .feedbackText
+      margin: 20px 10%
 
     .welcomeText
       border: solid black
@@ -16,14 +22,38 @@
     .feedback
       margin-top: 50px
       border: solid black
-      div
-        margin: 0 auto
-        width: fit-content
       form
         margin: 0 auto
         width: fit-content
         display: flex
         flex-flow: column
+        +for_breakpoint(small)
+          width: 100%
+          margin: 0
+          padding: 0
+      input[type="submit"]
+        border: none
+        background-image: linear-gradient(to bottom right, black, #00FF0A)
+        -webkit-background-clip: text
+        -webkit-text-fill-color: transparent
+        font-size: 26px
+        font-family: "Permanent Marker"
+        &:hover
+          cursor: pointer
+
+      input[type="text"]
+        height: 80px
+        width: 350px
+        background: #afb5bf
+        border: solid black
+        margin: 20px
+        +for_breakpoint(small)
+          width: 100%
+          margin: 0
+
+      
+
+
 
 
     .feedbackSuccess

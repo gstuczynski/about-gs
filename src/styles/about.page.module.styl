@@ -1,3 +1,5 @@
+@import "./breakpoints.styl"
+
 .aboutPage
   height: 100%
   background-image: linear-gradient(to bottom right, #03359b, black);
@@ -13,4 +15,6 @@
     max-width: 1000px
     margin: 10% auto 0 auto
     font-family: "Raleway"
+    +for_breakpoint(small)
+      margin-top: 150px
     

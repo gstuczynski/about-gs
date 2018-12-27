@@ -12,6 +12,7 @@ const ProjectList = ({ projectsList }) =>
       url={p.url}
       openInModal={p.openInModal}
       id={p._id}
+      mobileUrl={p.mobileUrl}
     />
   ));
 

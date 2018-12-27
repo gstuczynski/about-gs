@@ -7,12 +7,13 @@ export default class TextEditor extends Component {
   static propTypes = {
     getEndpoint: string.isRequired,
     updateEndpoint: string.isRequired,
+    attribute: string.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      inputValue: '',
     };
   }
 
@@ -20,7 +21,7 @@ export default class TextEditor extends Component {
     axios
       .get(`${config.backendAddress}/info/${this.props.getEndpoint}`)
       .then(response => {
-        this.setState({ text: response.data[0].text });
+        this.setState({ inputValue: response.data[0][this.props.attribute] });
       })
       .catch(err => {
         console.log(err);
@@ -30,9 +31,13 @@ export default class TextEditor extends Component {
   onSubmit = () => {
     const token = localStorage.getItem('token');
     return axios
-      .post(`${config.backendAddress}/info/${this.props.updateEndpoint}`, this.state, {
-        headers: { authorization: token },
-      })
+      .post(
+        `${config.backendAddress}/info/${this.props.updateEndpoint}`,
+        { [this.props.attribute]: this.state.inputValue },
+        {
+          headers: { authorization: token },
+        }
+      )
       .then(response => {
         console.log(response);
       })
@@ -45,9 +50,9 @@ export default class TextEditor extends Component {
     return (
       <div>
         <textarea
-          value={this.state.text}
+          value={this.state.inputValue}
           type="textarea"
-          onChange={evt => this.setState({ text: evt.target.value })}
+          onChange={evt => this.setState({ inputValue: evt.target.value })}
           rows="10"
           cols="100"
         />

@@ -27,7 +27,9 @@ class ProjectBlock extends React.Component {
     img: string.isRequired,
     text: string.isRequired,
     url: string.isRequired,
+    mobileUrl: string,
     openInModal: bool,
+    mobile: bool,
   };
 
   static defaultProps = {
@@ -43,10 +45,12 @@ class ProjectBlock extends React.Component {
   }
 
   renderModal = () => {
+    const url =
+      this.props.mobile && Boolean(this.props.mobileUrl) ? this.props.mobileUrl : this.props.url;
     return (
       <Modal isOpen={this.state.openModal} style={modalStyles}>
         <div className={style.modal}>
-          <Iframe url={this.props.url} allowFullScreen />
+          <Iframe url={url} allowFullScreen />
           <button
             type="button"
             aria-label="Close"

@@ -27,13 +27,17 @@ class HomePage extends React.Component {
       })
       .then(response => {
         this.setState({
-          welcomeText: response.data[0].text,
-          feedbackText: response.data[0].homeFeedbackText,
+          welcomeText: response.data[0].welcomeText,
+          feedbackText: response.data[0].feedbackText,
         });
       })
       .catch(() => {
         this.setState({ isError: true });
       });
+  }
+  // Particles are reloading on each change state, what looks strange
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.feedbackFormInput === nextState.feedbackFormInput;
   }
 
   handleFeedbackChange = event => {
@@ -53,9 +57,11 @@ class HomePage extends React.Component {
 
   render() {
     let infoAfterSentFeedback = this.state.sendFeedbackSuccess ? (
-      <div className={cn(style.feedbackInfo, style.feedbackSuccess)}>dupa</div>
+      <div className={cn(style.feedbackInfo, style.feedbackSuccess)}>Thank you for feedback</div>
     ) : (
-      <div className={cn(style.feedbackInfo, style.feedbackError)}>gówno</div>
+      <div className={cn(style.feedbackInfo, style.feedbackError)}>
+        Something went wrong, try again later.
+      </div>
     );
 
     return (
@@ -70,16 +76,21 @@ class HomePage extends React.Component {
                 dangerouslySetInnerHTML={{ __html: this.state.welcomeText }}
               />
               <div className={cn(style.feedback, value)}>
-                <div dangerouslySetInnerHTML={{ __html: this.state.feedbackText }} />
-                <form onSubmit={this.handleFeedbackSubmit}>
-                  {this.state.feedbackWasSent && infoAfterSentFeedback}
-                  <input
-                    type="text"
-                    value={this.state.feedbackFormInput}
-                    onChange={this.handleFeedbackChange}
-                  />
-                  <input type="submit" value="Submit" />
-                </form>
+                <div
+                  className={style.feedbackText}
+                  dangerouslySetInnerHTML={{ __html: this.state.feedbackText }}
+                />
+                {this.state.feedbackWasSent && infoAfterSentFeedback}
+                {!this.state.feedbackWasSent && (
+                  <form onSubmit={this.handleFeedbackSubmit}>
+                    <input
+                      type="text"
+                      value={this.state.feedbackFormInput}
+                      onInput={this.handleFeedbackChange}
+                    />
+                    <input type="submit" value="Submit" />
+                  </form>
+                )}
               </div>
             </div>
           </div>

@@ -67,8 +67,21 @@ export default class AdminPage extends Component {
         {this.state.isAuth && (
           <div>
             <ProjectsEditor />
-            <TextEditor getEndpoint={'about-gs'} updateEndpoint={'aboutgs-update'} />
-            <TextEditor getEndpoint={'home-content'} updateEndpoint={'home-content-update'} />
+            <TextEditor
+              getEndpoint={'about-gs'}
+              updateEndpoint={'aboutgs-update'}
+              attribute="text"
+            />
+            <TextEditor
+              getEndpoint={'home-content'}
+              updateEndpoint={'home-content-update'}
+              attribute="welcomeText"
+            />
+            <TextEditor
+              getEndpoint={'home-content'}
+              updateEndpoint={'home-content-update'}
+              attribute="feedbackText"
+            />
           </div>
         )}
       </div>

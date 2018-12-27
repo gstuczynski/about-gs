@@ -10,13 +10,13 @@ class SingleProjectEditor extends Component {
       image: this.props.image,
       openInModal: this.props.openInModal,
       url: this.props.url,
+      mobileUrl: this.props.mobileUrl,
       id: this.props.id,
     };
   }
 
   onSubmit = () => {
     const token = localStorage.getItem('token');
-    console.log('token', token);
     axios
       .post(`${config.backendAddress}/info/project-update`, this.state, {
         headers: { authorization: token },
@@ -43,7 +43,7 @@ class SingleProjectEditor extends Component {
         />
         <input
           type="text"
-          value={this.state.img}
+          value={this.state.image}
           name={'image'}
           onChange={evt => this.onChange(evt)}
         />
@@ -54,8 +54,14 @@ class SingleProjectEditor extends Component {
           onChange={evt => this.onChange(evt)}
         />
         <input
+          type="text"
+          value={this.state.mobileUrl}
+          name={'mobileUrl'}
+          onChange={evt => this.onChange(evt)}
+        />
+        <input
           type="checkbox"
-          value={this.state.openInModal}
+          checked={this.state.openInModal}
           name={'openInModal'}
           onChange={evt => this.onChange(evt)}
         />
