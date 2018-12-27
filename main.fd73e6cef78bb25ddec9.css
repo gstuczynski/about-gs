@@ -49,6 +49,14 @@
   margin: 10% auto 0 auto;
   position: relative;
 }
+@media all and (max-width: 650px) {
+  .src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__homeContent--WF5YB {
+    margin-top: 150px;
+  }
+}
+.src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedbackText--3VYBW {
+  margin: 20px 10%;
+}
 .src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__welcomeText--3Rvph {
   border: solid #000;
   padding: 40px;
@@ -57,15 +65,42 @@
   margin-top: 50px;
   border: solid #000;
 }
-.src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedback--20acx div {
-  margin: 0 auto;
-  width: fit-content;
-}
 .src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedback--20acx form {
   margin: 0 auto;
   width: fit-content;
   display: flex;
   flex-flow: column;
+}
+@media all and (max-width: 650px) {
+  .src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedback--20acx form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+.src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedback--20acx input[type="submit"] {
+  border: none;
+  background-image: linear-gradient(to bottom right, #000, #00ff0a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 26px;
+  font-family: "Permanent Marker";
+}
+.src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedback--20acx input[type="submit"]:hover {
+  cursor: pointer;
+}
+.src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedback--20acx input[type="text"] {
+  height: 80px;
+  width: 350px;
+  background: #afb5bf;
+  border: solid #000;
+  margin: 20px;
+}
+@media all and (max-width: 650px) {
+  .src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedback--20acx input[type="text"] {
+    width: 100%;
+    margin: 0;
+  }
 }
 .src-styles-home-page-module__homePage--2LRX_ .src-styles-home-page-module__feedbackSuccess--3Y1Vs {
   color: #008000;
@@ -188,6 +223,11 @@
     padding: 10px;
   }
 }
+@media all and (max-width: 650px) {
+  .src-styles-portfolio-page-module__portfolioPage--kE_ns .src-styles-portfolio-page-module__projects--3cw-j {
+    margin-top: 150px;
+  }
+}
 @media all and (min-width: 1180px) {
   .src-styles-portfolio-page-module__portfolioPage--kE_ns :nth-child(odd) img {
     order: 1;
@@ -219,6 +259,11 @@
   max-width: 1000px;
   margin: 10% auto 0 auto;
   font-family: "Raleway";
+}
+@media all and (max-width: 650px) {
+  .src-styles-about-page-module__aboutPage--2W3Qu .src-styles-about-page-module__aboutText--3xU9G {
+    margin-top: 150px;
+  }
 }
 
 .src-styles-admin-module__adminPage--2srhH {
