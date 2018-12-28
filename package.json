@@ -32,6 +32,7 @@
     "stylus-loader": "^3.0.2",
     "typeface-gamja-flower": "^0.0.61",
     "typeface-raleway": "^0.0.54",
+    "typeface-ubuntu": "^0.0.65",
     "underscore": "^1.9.1",
     "webpack-dev-server": "^3.1.10",
     "webpack-hot-client": "^4.1.1"

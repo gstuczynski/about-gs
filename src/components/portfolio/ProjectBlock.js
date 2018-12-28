@@ -1,8 +1,9 @@
 import React from 'react';
-import { string, bool } from 'prop-types';
+import { string, bool, arrayOf } from 'prop-types';
 import Iframe from 'react-iframe';
 import Modal from 'react-modal';
 import cn from 'classnames';
+import _ from 'underscore';
 import githubIcon from '../../assets/githubLogo.png';
 import style from '../../styles/project.block.module.styl';
 import { ThemeContext } from '../../App';
@@ -30,10 +31,12 @@ class ProjectBlock extends React.Component {
     mobileUrl: string,
     openInModal: bool,
     mobile: bool,
+    repos: arrayOf(string),
   };
 
   static defaultProps = {
     openInModal: false,
+    repos: [],
   };
 
   constructor(props) {
@@ -64,7 +67,7 @@ class ProjectBlock extends React.Component {
   };
 
   render() {
-    const { img, text, url, openInModal } = this.props;
+    const { img, text, url, openInModal, repos } = this.props;
 
     let projectButton;
 
@@ -88,15 +91,25 @@ class ProjectBlock extends React.Component {
             <div>
               <div dangerouslySetInnerHTML={{ __html: text }} />
               <div className={style.projectAttachments}>
+                {_.map(repos, repo => (
+                  <a
+                    href={repo}
+                    className={style.githubIcon}
+                    src={githubIcon}
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <img src={githubIcon} />
+                  </a>
+                ))}
+                {this.props.mobile && this.props.mobileUrl && (
+                  <p style={{ color: 'red', fontSize: 14 }}>
+                    360 tours not working well on mobiles yet, will be open demo, for full version
+                    try on higher resolution{' '}
+                  </p>
+                )}
                 {projectButton}
+
                 {this.props.openInModal && this.renderModal()}
-                <a
-                  className={style.githubIcon}
-                  src={githubIcon}
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <img src={githubIcon} />
-                </a>
               </div>
             </div>
           </div>

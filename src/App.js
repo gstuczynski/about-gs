@@ -11,6 +11,7 @@ import './styles/global.styl';
 import './styles/breakpoints.styl';
 import 'typeface-gamja-flower';
 import 'typeface-raleway';
+import 'typeface-ubuntu';
 
 export const ThemeContext = React.createContext();
 

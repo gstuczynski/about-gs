@@ -83,8 +83,7 @@ class HomePage extends React.Component {
                 {this.state.feedbackWasSent && infoAfterSentFeedback}
                 {!this.state.feedbackWasSent && (
                   <form onSubmit={this.handleFeedbackSubmit}>
-                    <input
-                      type="text"
+                    <textarea
                       value={this.state.feedbackFormInput}
                       onInput={this.handleFeedbackChange}
                     />

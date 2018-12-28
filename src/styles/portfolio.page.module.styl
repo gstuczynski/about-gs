@@ -10,16 +10,15 @@
     +for_breakpoint(small)
       margin-top: 150px
 
-  :nth-child(odd)
-    +for_breakpoint(large)
+    div:nth-child(odd)
       img
         order: 1
         padding-left: 20px
       div
         margin-right: 40px
 
-      :nth-child(even)
-        img
-          padding-right: 20px
-        div
-          margin-left: 40px
+    :nth-child(even)
+      img
+        padding-right: 20px
+      div
+        margin-left: 10px

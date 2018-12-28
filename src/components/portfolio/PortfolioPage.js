@@ -18,6 +18,7 @@ const ProjectBlockList = ({ projectsList, mobile }) =>
       mobileUrl={p.mobileUrl}
       openInModal={p.openInModal}
       mobile={mobile}
+      repos={p.repos}
     />
   ));
 

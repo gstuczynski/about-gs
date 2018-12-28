@@ -1,14 +1,16 @@
-import React, { Children } from 'react';
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
-import cn from 'classnames';
+import React from 'react';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import style from '../styles/header.module.styl';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { node } from 'prop-types';
 
 export default class Header extends React.Component {
+  static propTypes = {
+    children: node.isRequired,
+  };
   constructor(props) {
     super(props);
-
     this.toggleNav = this.toggleNav.bind(this);
     this.toggleDrop = this.toggleDrop.bind(this);
     this.onScroll = this.onScroll.bind(this);

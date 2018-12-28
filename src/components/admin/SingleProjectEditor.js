@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { string, bool, arrayOf } from 'prop-types';
 import config from '../../config';
 
 class SingleProjectEditor extends Component {
+  static propTypes = {
+    text: string.isRequired,
+    image: string.isRequired,
+    openInModal: bool.isRequired,
+    url: string.isRequired,
+    id: string.isRequired,
+    mobileUrl: string.isRequired,
+    repos: arrayOf(string).isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +23,7 @@ class SingleProjectEditor extends Component {
       url: this.props.url,
       mobileUrl: this.props.mobileUrl,
       id: this.props.id,
+      repos: this.props.repos,
     };
   }
 
@@ -60,10 +72,16 @@ class SingleProjectEditor extends Component {
           onChange={evt => this.onChange(evt)}
         />
         <input
-          type="checkbox"
-          checked={this.state.openInModal}
-          name={'openInModal'}
+          type="text"
+          value={this.state.repos}
+          name={'repos'}
           onChange={evt => this.onChange(evt)}
+        />
+        <input
+          type="checkbox"
+          defaultChecked={this.state.openInModal}
+          name={'openInModal'}
+          onChange={() => this.setState({ openInModal: !this.state.openInModal })}
         />
         <button type="submit">Submit</button>
       </form>

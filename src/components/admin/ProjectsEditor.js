@@ -7,12 +7,13 @@ import config from '../../config';
 const ProjectList = ({ projectsList }) =>
   _.map(projectsList, p => (
     <SingleProjectEditor
-      image={`${config.backendAddress}/asset?file=${p.image}`}
+      image={p.image}
       text={p.text}
       url={p.url}
       openInModal={p.openInModal}
       id={p._id}
       mobileUrl={p.mobileUrl}
+      repos={p.repos}
     />
   ));
 
