@@ -2,6 +2,7 @@ import React from 'react';
 import { string, bool, arrayOf } from 'prop-types';
 import Iframe from 'react-iframe';
 import Modal from 'react-modal';
+import ReactGA from 'react-ga';
 import cn from 'classnames';
 import _ from 'underscore';
 import githubIcon from '../../assets/githubLogo.png';
@@ -29,7 +30,7 @@ const modalStyles = {
 
 class ProjectBlock extends React.Component {
   static propTypes = {
-    img: string.isRequired,
+    img: string,
     text: string.isRequired,
     url: string.isRequired,
     mobileUrl: string,
@@ -41,6 +42,7 @@ class ProjectBlock extends React.Component {
   static defaultProps = {
     openInModal: false,
     repos: [],
+    img: null,
   };
 
   constructor(props) {
@@ -50,6 +52,15 @@ class ProjectBlock extends React.Component {
       openModal: false,
     };
   }
+
+  openModal = () => {
+    ReactGA.event({
+      category: 'Projects',
+      action: 'Open Modal',
+      label: this.props.url,
+    });
+    this.setState({ openModal: true });
+  };
 
   renderModal = () => {
     const url =
@@ -76,9 +87,7 @@ class ProjectBlock extends React.Component {
     let projectButton;
 
     if (openInModal) {
-      projectButton = (
-        <button onClick={() => this.setState({ openModal: true })}>Open Modal</button>
-      );
+      projectButton = <button onClick={this.openModal}>Open Modal</button>;
     } else {
       projectButton = (
         <a href={url} target="_blank" rel="noopener noreferrer">
@@ -91,7 +100,7 @@ class ProjectBlock extends React.Component {
       <ThemeContext.Consumer>
         {({ theme }) => (
           <div className={cn(style.projectBlock, theme)}>
-            <img src={img} />
+            {img && <img src={img} />}
             <div>
               <div dangerouslySetInnerHTML={{ __html: text }} />
               <div className={style.projectAttachments}>

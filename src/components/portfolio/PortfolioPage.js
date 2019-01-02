@@ -47,7 +47,7 @@ class PortfolioPage extends React.Component {
       <ThemeContext.Consumer>
         {({ theme, mobile }) => (
           <div className={cn(style.portfolioPage, theme)}>
-            {!mobile && <Particles params={particleParams} style={{ position: 'absolute' }} />}{' '}
+            {!mobile && <Particles params={particleParams} style={{ position: 'absolute' }} />}
             <div className={style.projects}>
               <ProjectBlockList projectsList={this.state.projectList} mobile={mobile} />
             </div>

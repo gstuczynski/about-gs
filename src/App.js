@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import Header from './components/Header';
 import HomePage from './components/home/HomePage';
 import PortfolioPage from './components/portfolio/PortfolioPage';
@@ -12,6 +13,8 @@ import './styles/breakpoints.styl';
 import 'typeface-gamja-flower';
 import 'typeface-raleway';
 import 'typeface-ubuntu';
+
+ReactGA.initialize('UA-131601646-1');
 
 export const ThemeContext = React.createContext();
 
