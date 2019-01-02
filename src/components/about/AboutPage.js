@@ -32,11 +32,13 @@ class AboutPage extends React.Component {
   render() {
     return (
       <ThemeContext.Consumer>
-        {value => (
-          <div className={cn(style.aboutPage, value)}>
-            <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
+        {({ theme, mobile }) => (
+          <div className={cn(style.aboutPage, theme)}>
+            {!mobile && (
+              <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
+            )}
             <div
-              className={cn(style.aboutText, value)}
+              className={cn(style.aboutText, theme)}
               dangerouslySetInnerHTML={{ __html: this.state.aboutGsText }}
             />
           </div>

@@ -20,6 +20,10 @@ const modalStyles = {
     padding: '0',
     overflow: 'hidden',
     transform: 'translate(-50%, -50%)',
+    background: 'transparent',
+  },
+  img: {
+    height: '100%',
   },
 };
 
@@ -73,7 +77,7 @@ class ProjectBlock extends React.Component {
 
     if (openInModal) {
       projectButton = (
-        <button onClick={() => this.setState({ openModal: true })}>Open FullScreen</button>
+        <button onClick={() => this.setState({ openModal: true })}>Open Modal</button>
       );
     } else {
       projectButton = (
@@ -85,8 +89,8 @@ class ProjectBlock extends React.Component {
 
     return (
       <ThemeContext.Consumer>
-        {value => (
-          <div className={cn(style.projectBlock, value)}>
+        {({ theme }) => (
+          <div className={cn(style.projectBlock, theme)}>
             <img src={img} />
             <div>
               <div dangerouslySetInnerHTML={{ __html: text }} />

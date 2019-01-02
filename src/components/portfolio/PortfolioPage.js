@@ -32,9 +32,6 @@ class PortfolioPage extends React.Component {
   }
 
   componentDidMount() {
-    this.updateWindowDimensions();
-    console.log(this.state);
-    window.addEventListener('resize', this.updateWindowDimensions);
     return axios
       .get(`${config.backendAddress}/info/projects`)
       .then(response => {
@@ -45,22 +42,14 @@ class PortfolioPage extends React.Component {
       });
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions = () => {
-    this.setState({ mobile: window.innerWidth < 700 });
-  };
-
   render() {
     return (
       <ThemeContext.Consumer>
-        {value => (
-          <div className={cn(style.portfolioPage, value)}>
-            <Particles params={particleParams} style={{ position: 'absolute' }} />
+        {({ theme, mobile }) => (
+          <div className={cn(style.portfolioPage, theme)}>
+            {!mobile && <Particles params={particleParams} style={{ position: 'absolute' }} />}{' '}
             <div className={style.projects}>
-              <ProjectBlockList projectsList={this.state.projectList} mobile={this.state.mobile} />
+              <ProjectBlockList projectsList={this.state.projectList} mobile={mobile} />
             </div>
           </div>
         )}

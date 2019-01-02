@@ -20,8 +20,23 @@ class App extends Component {
     super();
     this.state = {
       theme: 'cold',
+      mobile: true,
     };
   }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ mobile: window.innerWidth < 700 });
+  };
+
   changeTheme = () => {
     const newTheme = this.state.theme === 'cold' ? 'hot' : 'cold';
     this.setState({
@@ -44,7 +59,7 @@ class App extends Component {
               </button>
             </Header>
             <div className={style.contentWrapper}>
-              <ThemeContext.Provider value={this.state.theme}>
+              <ThemeContext.Provider value={{ theme: this.state.theme, mobile: this.state.mobile }}>
                 <Route path="/about-me" component={AboutPage} />
                 <Route path="/portfolio" component={PortfolioPage} />
                 <Route path="/" exact component={HomePage} />

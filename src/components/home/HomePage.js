@@ -66,16 +66,17 @@ class HomePage extends React.Component {
 
     return (
       <ThemeContext.Consumer>
-        {value => (
-          <div className={cn(style.homePage, value)}>
-            <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
-
+        {({ theme, mobile }) => (
+          <div className={cn(style.homePage, theme)}>
+            {!mobile && (
+              <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
+            )}
             <div className={style.homeContent}>
               <div
-                className={cn(style.welcomeText, value)}
+                className={cn(style.welcomeText, theme)}
                 dangerouslySetInnerHTML={{ __html: this.state.welcomeText }}
               />
-              <div className={cn(style.feedback, value)}>
+              <div className={cn(style.feedback, theme)}>
                 <div
                   className={style.feedbackText}
                   dangerouslySetInnerHTML={{ __html: this.state.feedbackText }}
