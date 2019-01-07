@@ -59,7 +59,8 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const { sendFeedbackSuccess, isLoading, isError, welcomeText } = this.state;
+    const { sendFeedbackSuccess, isLoading, isError } = this.state;
+    let { welcomeText } = this.state;
     if (isError) {
       welcomeText = 'Something went wrong!';
     }
@@ -80,7 +81,7 @@ class HomePage extends React.Component {
     ) : (
       <div
         className={cn(style.welcomeText, { theme: theme })}
-        dangerouslySetInnerHTML={{ __html: this.state.welcomeText }}
+        dangerouslySetInnerHTML={{ __html: welcomeText }}
       />
     );
 
