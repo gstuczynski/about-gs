@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import Header from './components/Header';
 import HomePage from './components/home/HomePage';
@@ -15,6 +15,7 @@ import 'typeface-raleway';
 import 'typeface-ubuntu';
 
 ReactGA.initialize('UA-131601646-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 export const ThemeContext = React.createContext();
 
@@ -63,10 +64,12 @@ class App extends Component {
             </Header>
             <div className={style.contentWrapper}>
               <ThemeContext.Provider value={{ theme: this.state.theme, mobile: this.state.mobile }}>
-                <Route path="/about-me" component={AboutPage} />
-                <Route path="/portfolio" component={PortfolioPage} />
-                <Route path="/" exact component={HomePage} />
-                <Route path="/admin" component={AdminPage} />
+                <Switch>
+                  <Route path="/about-me" component={AboutPage} />
+                  <Route path="/portfolio" component={PortfolioPage} />
+                  <Route path="/admin" component={AdminPage} />
+                  <Route path="/" component={HomePage} />
+                </Switch>
               </ThemeContext.Provider>
             </div>
           </>

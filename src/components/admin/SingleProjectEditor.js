@@ -5,13 +5,22 @@ import config from '../../config';
 
 class SingleProjectEditor extends Component {
   static propTypes = {
-    text: string.isRequired,
-    image: string.isRequired,
-    openInModal: bool.isRequired,
-    url: string.isRequired,
+    text: string,
+    image: string,
+    openInModal: bool,
+    url: string,
     id: string.isRequired,
-    mobileUrl: string.isRequired,
-    repos: arrayOf(string).isRequired,
+    mobileUrl: string,
+    repos: arrayOf(string),
+  };
+
+  static defaultProps = {
+    text: null,
+    image: null,
+    openInModal: false,
+    url: null,
+    mobileUrl: null,
+    repos: [],
   };
 
   constructor(props) {

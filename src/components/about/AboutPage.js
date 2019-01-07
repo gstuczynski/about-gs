@@ -2,6 +2,7 @@ import React from 'react';
 import Particles from 'react-particles-js';
 import axios from 'axios';
 import cn from 'classnames';
+import ReactGA from 'react-ga';
 import config from '../../config';
 import style from '../../styles/about.page.module.styl';
 import { ThemeContext } from '../../App';

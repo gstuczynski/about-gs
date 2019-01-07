@@ -10,17 +10,20 @@ import { ThemeContext } from '../../App';
 import particleParams from '../../assets/particlesConfigs/rainfall.json';
 
 const ProjectBlockList = ({ projectsList, mobile }) =>
-  _.map(projectsList, p => (
-    <ProjectBlock
-      img={`${config.backendAddress}/asset?file=${p.image}`}
-      text={p.text}
-      url={p.url}
-      mobileUrl={p.mobileUrl}
-      openInModal={p.openInModal}
-      mobile={mobile}
-      repos={p.repos}
-    />
-  ));
+  _.map(projectsList, p => {
+    const img = p.image ? `${config.backendAddress}/asset?file=${p.image}` : false;
+    return (
+      <ProjectBlock
+        img={img}
+        text={p.text}
+        url={p.url}
+        mobileUrl={p.mobileUrl}
+        openInModal={p.openInModal}
+        mobile={mobile}
+        repos={p.repos}
+      />
+    );
+  });
 
 class PortfolioPage extends React.Component {
   constructor(props) {
