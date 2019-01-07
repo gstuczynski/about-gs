@@ -11,10 +11,12 @@ class HomePage extends React.Component {
   constructor() {
     super();
     this.state = {
-      welcomeText: 'Something went wrong!',
+      welcomeText: 'No data',
       feedbackText: '',
       sendFeedbackSuccess: false,
       feedbackWasSent: false,
+      isLoading: true,
+      isError: false,
     };
   }
 
@@ -29,6 +31,7 @@ class HomePage extends React.Component {
         this.setState({
           welcomeText: response.data[0].welcomeText,
           feedbackText: response.data[0].feedbackText,
+          isLoading: false,
         });
       })
       .catch(() => {
@@ -56,12 +59,29 @@ class HomePage extends React.Component {
   };
 
   render() {
-    let infoAfterSentFeedback = this.state.sendFeedbackSuccess ? (
+    const { sendFeedbackSuccess, isLoading, isError, welcomeText } = this.state;
+    if (isError) {
+      welcomeText = 'Something went wrong!';
+    }
+
+    let infoAfterSentFeedback = sendFeedbackSuccess ? (
       <div className={cn(style.feedbackInfo, style.feedbackSuccess)}>Thank you for feedback</div>
     ) : (
       <div className={cn(style.feedbackInfo, style.feedbackError)}>
         Something went wrong, try again later.
       </div>
+    );
+
+    // theme may looks stange, but here i haven't theme, but i get it by context in return - so it works.
+
+    let theme;
+    let contentBox = isLoading ? (
+      <div className="spinner">Loading...</div>
+    ) : (
+      <div
+        className={cn(style.welcomeText, { theme: theme })}
+        dangerouslySetInnerHTML={{ __html: this.state.welcomeText }}
+      />
     );
 
     return (
@@ -72,10 +92,7 @@ class HomePage extends React.Component {
               <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
             )}
             <div className={style.homeContent}>
-              <div
-                className={cn(style.welcomeText, theme)}
-                dangerouslySetInnerHTML={{ __html: this.state.welcomeText }}
-              />
+              {contentBox}
               <div className={cn(style.feedback, theme)}>
                 <div
                   className={style.feedbackText}

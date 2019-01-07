@@ -12,7 +12,9 @@ class AboutPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      aboutGsText: 'Something went wrong!',
+      aboutGsText: 'No data',
+      isLoading: true,
+      isError: false,
     };
   }
   componentDidMount() {
@@ -23,7 +25,7 @@ class AboutPage extends React.Component {
         },
       })
       .then(response => {
-        this.setState({ aboutGsText: response.data[0].text });
+        this.setState({ aboutGsText: response.data[0].text, isLoading: false });
       })
       .catch(() => {
         this.setState({ isError: true });
@@ -31,6 +33,11 @@ class AboutPage extends React.Component {
   }
 
   render() {
+    if (this.state.isError) {
+      this.setState({
+        aboutGsText: 'Something went wrong!',
+      });
+    }
     return (
       <ThemeContext.Consumer>
         {({ theme, mobile }) => (
@@ -38,10 +45,14 @@ class AboutPage extends React.Component {
             {!mobile && (
               <Particles params={particlesParams} style={{ position: 'fixed', top: '0' }} />
             )}
-            <div
-              className={cn(style.aboutText, theme)}
-              dangerouslySetInnerHTML={{ __html: this.state.aboutGsText }}
-            />
+            {this.state.isLoading ? (
+              <div className="spinner">Loading...</div>
+            ) : (
+              <div
+                className={cn(style.aboutText, theme)}
+                dangerouslySetInnerHTML={{ __html: this.state.aboutGsText }}
+              />
+            )}
           </div>
         )}
       </ThemeContext.Consumer>
